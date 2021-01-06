@@ -1,25 +1,20 @@
-package org.zjy.serviceImpl;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.zjy.dao.TUserMapper;
-import org.zjy.entity.TUser;
 import org.zjy.model.UserModel;
+import org.zjy.service.UserService;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @ContextConfiguration()
-public class UserServiceImplTest {
+public class apiTest {
 
     @Autowired
-    private TUserMapper userMapper;
+    private UserService userService;
 
     @Test
     public void getAllUser() {
-        TUser tUser = userMapper.selectByPrimaryKey(1);
+        UserModel tUser = userService.getUserById(1);
         System.out.println(tUser.getName());
     }
 }

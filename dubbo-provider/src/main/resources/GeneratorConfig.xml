@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 配置生成器 -->
+<generatorConfiguration>
+    <classPathEntry location="D:/java/mysql-connector-java-8.0.20.jar" />
+    <context id="testTables" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 生成注释配置 -->
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="false"/>
+            <property name="javaFileEncoding" value="UTF8"/>
+            <!--生成的注释包含时间戳(避免重复提交SVN,设为true)-->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <!--
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@150.16.17.22:1521/wsbs" userId="hr"
+            password="hr123">
+        </jdbcConnection>-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/test?serverTimezone=GMT"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="org.zjy.entity"
+                            targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- targetProject:mapper.xml映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject=".\src\main\resources">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper.java接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="org.zjy.dao"
+                             targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 指定数据库表 -->
+        <table schema="" tableName="t_user"></table>
+        <!--        <table schema="" tableName="t_product"></table>
+                <table schema="" tableName="t_order"></table>-->
+
+        <!-- 指定数据库表 -->
+        <!--  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+        enableSelectByExample="false" selectByExampleQueryId="false"-->
+        <!--不生成example-->
+        <!--<table tableName="items"></table> -->
+        <!--        <table tableName="hobbys" mapperName="HobbysMapper" domainObjectName="Hobbys"-->
+        <!--               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"-->
+        <!--               enableSelectByExample="false" selectByExampleQueryId="false">-->
+        <!--            &lt;!&ndash;下划线转驼峰命名&ndash;&gt;-->
+        <!--            <property name="useActualColumnNames" value="false"/>-->
+        <!--            &lt;!&ndash;指定自动生成主键的属性&ndash;&gt;-->
+        <!--            <generatedKey column="id" sqlStatement="MySql" identity="true"></generatedKey>-->
+        <!--            &lt;!&ndash;元素从将某些属性默认计算的值更改为指定的值。&ndash;&gt;-->
+        <!--            &lt;!&ndash;<columnOverride  column="message_content" javaType="List&lt;Teacher&gt;"></columnOverride >&ndash;&gt;-->
+        <!--            &lt;!&ndash;忽略字段&ndash;&gt;-->
+        <!--            &lt;!&ndash;<ignoreColumn column="file_id"></ignoreColumn>&ndash;&gt;-->
+        <!--            &lt;!&ndash;<ignoreColumn column="lyric_id"></ignoreColumn>&ndash;&gt;-->
+        <!--        </table>-->
+
+
+    </context>
+</generatorConfiguration>

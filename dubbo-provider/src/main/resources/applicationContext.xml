@@ -9,9 +9,7 @@
         <property name="locations" value="classpath:jdbc.properties"/>
     </bean>
     <!-- 2.扫描的包路径 --><!--使用<context:component-scan/> 可以不再配置<context:annotation-config/> -->
-<!--
     <context:component-scan base-package="org.zjy"/>
--->
     <!--6 容器自动扫描IOC组件  -->
     <context:component-scan base-package="org.zjy.model"/>
     <import resource="spring-dubbo.xml"/>

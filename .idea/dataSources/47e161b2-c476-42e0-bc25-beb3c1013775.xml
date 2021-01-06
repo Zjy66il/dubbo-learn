@@ -918,7 +918,7 @@ SELECT|sys.sys_config
       <Engine>MyISAM</Engine>
       <Collation>utf8_general_ci</Collation>
     </table>
-    <table id="287" parent="6" name="user"/>
+    <table id="287" parent="6" name="t_user"/>
     <column id="288" parent="283" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>

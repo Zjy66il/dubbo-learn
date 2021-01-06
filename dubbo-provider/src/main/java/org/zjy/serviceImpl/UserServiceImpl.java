@@ -3,8 +3,9 @@ package org.zjy.serviceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.zjy.dao.UserDao;
-import org.zjy.entity.User;
+import org.zjy.dao.TUserMapper;
+import org.zjy.entity.TUser;
+//import org.zjy.entity.User;
 import org.zjy.model.UserModel;
 import org.zjy.service.UserService;
 
@@ -14,21 +15,22 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserDao userDao;
-
     @Autowired
+    private TUserMapper userMapper;
+
+/*    @Autowired
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
-    }
+    }*/
 
 /*    @Autowired
     private UserDao userDao;*/
 
     @Override
     public List<UserModel> getAllUser() {
-        List<User> userEntityList = userDao.getAllUser();
+        List<TUser> userEntityList = userMapper.selectByExample(null);
         List<UserModel> userModelList = new ArrayList<>();
-        for (User userEntity : userEntityList){
+        for (TUser userEntity : userEntityList){
             UserModel userModel = new UserModel();
             userModel.setName(userEntity.getName());
             userModel.setId(userEntity.getId());
@@ -41,16 +43,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(UserModel userModel) {
-        User userEntity = new User();
+        TUser userEntity = new TUser();
         userEntity.setName(userModel.getName());
         userEntity.setAge(userModel.getAge());
         userEntity.setPassword(userModel.getPassword());
-        userDao.addUser(userEntity);
+        userMapper.insert(userEntity);
+        //userDao.addUser(userEntity);
     }
 
     @Override
     public UserModel getUserById(Integer id) {
-        User userEntity = userDao.getUserById(id);
+        TUser userEntity = userMapper.selectByPrimaryKey(id);
+        //userDao.getUserById(id);
         UserModel userModel = new UserModel();
         userModel.setAge(userEntity.getAge());
         userModel.setId(userEntity.getId());
@@ -62,17 +66,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(UserModel userModel) {
-        User userEntity = userDao.getUserById(userModel.getId());
+        TUser userEntity = userMapper.selectByPrimaryKey(userModel.getId());
+        //userDao.getUserById(userModel.getId());
         userEntity.setPassword(userModel.getPassword());
         userEntity.setAge(userModel.getAge());
         userEntity.setName(userModel.getName());
-        userDao.updateUser(userEntity);
+        userMapper.updateByPrimaryKey(userEntity);
+        //userDao.updateUser(userEntity);
     }
 
     @Override
     public void deleteUser(Integer[] ids) {
         for (Integer id : ids){
-            userDao.deleteUserById(id);
+            userMapper.deleteByPrimaryKey(id);
+            //userDao.deleteUserById(id);
         }
     }
 }
