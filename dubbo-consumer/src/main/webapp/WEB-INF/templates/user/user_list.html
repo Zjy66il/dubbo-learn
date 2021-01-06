@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>userEntityList</title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<!--
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/lib/jquery-2.1.4.min.js" ></script>
+-->
+<!--
+    <script type="text/javascript" src="/js/userCheck.js"></script>
+-->
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" ></script>
     <script type="text/javascript">
         $(function () {
             //全选
@@ -30,7 +36,7 @@
             });
 
             //删除用户
-            $("#delete").click(function () {
+           $("#delete").click(function () {
                 var ids = [];
                 $("input[name=deleteId]:checked").each(function(index){
                     ids[index] = $(this).val();
@@ -59,7 +65,7 @@
 </head>
 <body>
 <a th:href="getUserDetailForm">添加</a>
-<a th:id="delete" href="# " >删除</a>
+<a th:id="delete" href="#" >删除</a>
 <table>
     <tr>
         <th><input th:type="checkbox" th:id="selectAll" title="点击全选/取消"/></th>
