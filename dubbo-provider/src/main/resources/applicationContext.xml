@@ -6,7 +6,7 @@
 
     <!-- 1.配置jdbc文件 -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations" value="classpath:jdbc.properties"/>
+        <property name="locations" value="classpath:DBConfig/jdbc.properties"/>
     </bean>
     <!-- 2.扫描的包路径 --><!--使用<context:component-scan/> 可以不再配置<context:annotation-config/> -->
     <context:component-scan base-package="org.zjy"/>

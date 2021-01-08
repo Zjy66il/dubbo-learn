@@ -17,39 +17,6 @@ public class UserController {
     private UserService userService;
     private String prefix = "user/";
 
-//    @RequestMapping(value="/getAllUser")
-//    @ResponseBody
-//    public List<UserModel> getAllUser(){
-//        return userService.getAllUser();
-//    }
-//
-//    @RequestMapping(value="/addUser")
-//    @ResponseBody
-//    public boolean addUser(UserModel userModel){
-//        userService.addUser(userModel);
-//        return true;
-//    }
-//
-//    @RequestMapping(value="/updateUser")
-//    @ResponseBody
-//    public boolean updateUser(UserModel userModel){
-//        userService.updateUser(userModel);
-//        return true;
-//    }
-//
-//    @RequestMapping(value="/deleteUser")
-//    @ResponseBody
-//    public boolean deleteUser(@RequestParam(value = "ids[]") Integer[] ids){
-//        userService.deleteUser(ids);
-//        return true;
-//    }
-
-
-//    @RequestMapping(value="/getUserListForm")
-//    public String getUserListForm(){
-//        return prefix + "user_list";
-//    }
-
     @RequestMapping(value="/getAllUser")
     public String getAllUser(ModelMap modelMap){
         modelMap.put("userModelList", userService.getAllUser());

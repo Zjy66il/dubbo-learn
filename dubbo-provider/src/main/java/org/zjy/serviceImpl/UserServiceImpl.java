@@ -1,30 +1,23 @@
 package org.zjy.serviceImpl;
 
-import lombok.RequiredArgsConstructor;
+import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.zjy.dao.TUserMapper;
 import org.zjy.entity.TUser;
-//import org.zjy.entity.User;
 import org.zjy.model.UserModel;
 import org.zjy.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
+@DubboService(version = "1.0.0", protocol = {"dubbo"})
 public class UserServiceImpl implements UserService {
 
     @Autowired
     private TUserMapper userMapper;
-
-/*    @Autowired
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
-    }*/
-
-/*    @Autowired
-    private UserDao userDao;*/
 
     @Override
     public List<UserModel> getAllUser() {
@@ -42,12 +35,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(UserModel userModel) {
+    public Boolean addUser(UserModel userModel) {
         TUser userEntity = new TUser();
         userEntity.setName(userModel.getName());
         userEntity.setAge(userModel.getAge());
         userEntity.setPassword(userModel.getPassword());
-        userMapper.insert(userEntity);
+        Integer result = userMapper.insert(userEntity);
+        return 1 == result ? true : false;
         //userDao.addUser(userEntity);
     }
 
@@ -65,21 +59,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(UserModel userModel) {
+    public Boolean updateUser(UserModel userModel) {
         TUser userEntity = userMapper.selectByPrimaryKey(userModel.getId());
         //userDao.getUserById(userModel.getId());
         userEntity.setPassword(userModel.getPassword());
         userEntity.setAge(userModel.getAge());
         userEntity.setName(userModel.getName());
-        userMapper.updateByPrimaryKey(userEntity);
+        Integer result = userMapper.updateByPrimaryKey(userEntity);
+        return 1 == result ? true : false;
         //userDao.updateUser(userEntity);
     }
 
     @Override
-    public void deleteUser(Integer[] ids) {
+    public Boolean deleteUser(Integer[] ids) {
+        Integer result = null;
         for (Integer id : ids){
-            userMapper.deleteByPrimaryKey(id);
+            result = userMapper.deleteByPrimaryKey(id);
+            if (result == 0){
+                break;
+            }
             //userDao.deleteUserById(id);
         }
+        return 1 == result ? true : false;
+
     }
 }

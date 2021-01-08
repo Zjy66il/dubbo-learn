@@ -13,5 +13,6 @@
     <dubbo:consumer check="false"/>
     <!-- 使用dubbo协议调用定义好的api接口 -->
     <dubbo:reference id="userService" interface="org.zjy.service.UserService" check="false"/>
+
     <context:component-scan base-package="org.zjy.controller"/>
 </beans>

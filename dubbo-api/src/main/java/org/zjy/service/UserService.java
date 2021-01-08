@@ -10,11 +10,11 @@ public interface UserService {
 
     List<UserModel> getAllUser();
 
-    void addUser(UserModel userModel);
+    Boolean addUser(UserModel userModel);
 
     UserModel getUserById(Integer id);
 
-    void updateUser(UserModel userModel);
+    Boolean updateUser(UserModel userModel);
 
-    void deleteUser(Integer[] ids);
+    Boolean deleteUser(Integer[] ids);
 }

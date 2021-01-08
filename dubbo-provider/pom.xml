@@ -20,6 +20,8 @@
         <slf4j.version>1.6.6</slf4j.version>
         <log4j.version>1.2.12</log4j.version>
         <mysql.version>8.0.20</mysql.version>
+        <dubbo.version>2.7.8</dubbo.version>
+        <curator.version>4.2.0</curator.version>
     </properties>
 
     <dependencies>
@@ -134,9 +136,9 @@
 
         <!--dubbo-->
         <dependency>
-            <groupId>com.alibaba</groupId>
+            <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
-            <version>2.5.7</version>
+            <version>${dubbo.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
@@ -152,8 +154,26 @@
         <dependency>
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
-            <version>2.7.1</version>
+            <version>4.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
+        <!-- for dubbo rest protocol -->
+        <dependency>
+        <groupId>org.apache.dubbo</groupId>
+        <artifactId>dubbo-rpc-rest</artifactId>
+        <version>2.7.8</version>
+        </dependency>
+        <!-- for dubbo rest protocol with tomcat server -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+        </dependency>
+
     </dependencies>
 <build>
     <resources>
